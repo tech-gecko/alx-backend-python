@@ -13,19 +13,11 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     """Spawns "wait_random" n times with the specified max_delay. Returns the
     list of all the delays (float values). The list of the delays would be in
     ascending order."""
-    return_list = []
+    delays = []
 
     for i in range(n):
         delay = await wait_random(max_delay=max_delay)
+        delays.append(delay)
 
-        inserted = False
-        for j in range(len(return_list)):
-            if delay < return_list[j]:
-                return_list.insert(j, delay)
-                inserted = True
-                break
-
-        if not inserted:
-            return_list.append(delay)
-
-    return return_list
+    # Sort the delays list after all delays are gathered
+    return sorted(delays)
