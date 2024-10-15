@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-"""This module contains an asynchronous coroutine called async_generator that
-takes no arguments. The coroutine will loop 10 times, each time asynchronously
-wait 1 second, then yield a random number between 0 and 10."""
+"""This module contains an asynchronous coroutine called "async_comprehension"
+that takes no arguments. The coroutine will collect 10 random numbers using an
+async comprehensing over "async_generator", then return the 10 random
+numbers."""
+from typing import List
+async_generator = __import__('0-async_generator').async_generator
 
-import asyncio
-import random
-from typing import AsyncGenerator
 
+async def async_comprehension() -> List[float]:
+    """Collects 10 random numbers using an async comprehensing over
+    "async_generator", then returns the 10 random numbers."""
+    result = [number async for number in async_generator()]
 
-async def async_generator() -> AsyncGenerator[float, None]:
-    """Loops 10 times, each time asynchronously wait 1 second,
-    then yield a random number between 0 and 10."""
-    for _ in range(10):
-        await asyncio.sleep(1)
-        yield random.uniform(0, 10)
+    return result
