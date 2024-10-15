@@ -10,7 +10,7 @@ import asyncio
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n: int, max_delay: int) -> list[float]:
+async def wait_n(n: int, max_delay: int) -> float:
     """Spawns "wait_random" n times with the specified max_delay. Returns the
     list of all the delays (float values). The list of the delays would be in
     ascending order."""
